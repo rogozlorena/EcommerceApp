@@ -13,8 +13,13 @@ public class OrderItemBuilder {
                 .build();
     }
     public static OrderItem toEntity(OrderItemDTO orderItemDTO) {
-        return OrderItem.builder()
-                .id(orderItemDTO.getId())
+        OrderItem.OrderItemBuilder builder = OrderItem.builder();
+
+        if (orderItemDTO.getId() != null) {
+            builder.id(orderItemDTO.getId());
+        }
+
+        return builder
                 .shoppingCart(ShoppingCart.builder()
                         .idCart(orderItemDTO.getCartId())
                         .build())
@@ -24,4 +29,5 @@ public class OrderItemBuilder {
                 .quantity(orderItemDTO.getQuantity())
                 .build();
     }
+
 }
